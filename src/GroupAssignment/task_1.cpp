@@ -24,6 +24,7 @@ public:
             cout << "\nWhat action do you wish to perform?" << endl;
             cout << "\nType \"run\" to begin calculation or \"quit\" to exit program" << endl;
             cin >> choosedAction;
+            clearInput();
 
             if (choosedAction == "run")
             {
@@ -47,8 +48,7 @@ public:
         int number = 0;
         int sum = 0;
         float average = 0.0f;
-
-
+        
         for (int i = 1; i <= 5; i++)
         {
         INPUT_NUMBER:
