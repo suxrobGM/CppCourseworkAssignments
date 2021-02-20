@@ -36,9 +36,7 @@ public:
             }
             else
             {
-                cout << "\n-------------------------------------------------------" << endl;
-                cout << "ERROR: Invalid value, please try again" << endl;
-                cout << "-------------------------------------------------------\n" << endl;
+                displayInputError();
             }
         }
     }
@@ -59,9 +57,8 @@ public:
 
             if (cin.fail())
             {
-                cout << "Invalid value, this is not an integer.\nPlease try again" << endl;
-                cin.clear();
-                cin.ignore(256,'\n');
+                clearInput();
+                displayInputError("Invalid value, this is not an integer.\nPlease try again");
                 goto INPUT_NUMBER;
             }
 
@@ -81,6 +78,20 @@ public:
         cout << "Quitted program!" << endl;
         cout << "-------------------------------------------------------\n" << endl;
         exit(0);
+    }
+
+private: 
+    void clearInput()
+    {
+        cin.clear();
+        cin.ignore(256,'\n');
+    }
+
+    void displayInputError(string errorMsg = "Invalid value, please try again")
+    {
+        cout << "\n-------------------------------------------------------" << endl;
+        cout << "ERROR: " << errorMsg << endl;
+        cout << "-------------------------------------------------------\n" << endl;
     }
 };
 
