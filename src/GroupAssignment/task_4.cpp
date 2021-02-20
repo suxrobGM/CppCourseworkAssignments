@@ -1,5 +1,5 @@
 /**
- * Task3
+ * Task4
  * Source code available in https://github.com/suxrobGM/CppCourseworkAssignments
  **/
 #include <iostream>
