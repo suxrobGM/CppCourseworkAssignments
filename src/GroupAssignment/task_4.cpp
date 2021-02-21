@@ -212,7 +212,7 @@ public:
         }
 
         cout << "-----------------------------------------------------------------------" << endl;
-        cout << "Here is our menu, please have a look: \n" << endl;
+        cout << "Here is our books, please have a look: \n" << endl;
         cout << " (1) Story Book - RM 27.50 (5.0% Discount)" << endl;
         cout << " (2) Documentary Book - RM 38.50" << endl;
         cout << " (3) Cookery Book - RM 14.00 (5.0% Discount)" << endl;
