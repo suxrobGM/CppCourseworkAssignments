@@ -37,7 +37,7 @@ public:
     }
 };
 
-class RestaurantOrderProgram 
+class ShopProgram 
 {
 private:
     vector<Order*>* _orders;
@@ -48,7 +48,7 @@ private:
     bool _isFirstRun;
 
 public:
-    RestaurantOrderProgram() 
+    ShopProgram() 
     {
         _orders = new vector<Order*>();
         _currentOrder = new Order();
@@ -387,7 +387,7 @@ public:
     }
 
     // Destructor to clean objects from heap
-    ~RestaurantOrderProgram()
+    ~ShopProgram()
     {
         _orders->clear();
         delete _orders;
@@ -465,7 +465,7 @@ private:
 
 int main() 
 {
-    RestaurantOrderProgram* program = new RestaurantOrderProgram();
+    ShopProgram* program = new ShopProgram();
     program->run();
 
     delete program;
