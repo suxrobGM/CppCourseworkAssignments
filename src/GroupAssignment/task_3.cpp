@@ -6,15 +6,19 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
+#include <limits>
 using namespace std;
 
 class PetrolAllowanceProgram 
 {
+private:
+    bool _isFirstRun;
+    string _staffName;
+
 public:
-    
     void run() {
         string choosedAction;
-
+        _isFirstRun = true;
         cout << "-----------------------------------------------------------------------" << endl;
         cout << "\t\tWelcome to the program! :)" << endl;
         cout << "-----------------------------------------------------------------------" << endl;
@@ -25,6 +29,7 @@ public:
             cout << "\nType \"run\" to begin calculation or \"quit\" to exit program" << endl;
             cin >> choosedAction;
 
+            cout << endl;
             if (choosedAction == "run") 
             {
                 calculate();
@@ -43,13 +48,27 @@ public:
 
     void calculate() 
     {
-        string staffName;
         float distance = 0.0f;
 
-        cout << "Enter staff name:" << endl;
-        clearInput();
-        getline(cin, staffName); // TODO: need to add staff name validation
+        if (_isFirstRun)
+        {
+            clearInput();
 
+        INPUT_NAME:
+            cout << "Enter staff name:" << endl;
+            getline(cin, _staffName); // TODO: need to add staff name validation
+
+            bool isValidName = validateName(_staffName);
+
+            if (!isValidName)
+            {
+                displayInputError("Staff name is invalid, please enter right name.");
+                goto INPUT_NAME;
+            }
+
+            _isFirstRun = false;
+        }
+        
     INPUT_DISTANCE:
         cout << "Enter distance travelled in kilometers" << endl;
         cin >> distance;
@@ -63,56 +82,70 @@ public:
         
         cout << "\n-------------------------------------------------------\n" << endl;
         cout << "Final receipt:\n" << endl;
-        cout << "Name: " << staffName << endl;
+        cout << "Name: " << _staffName << endl;
         printf("Distance travelled: %.1fkm\n\n", distance);
 
         float totalPrice = 0.0f;
+        float currentDistancePrice = 0.0f;
         float restDistance = distance;
+        bool distanceFinished = false;
 
-        if (restDistance >= 10) 
+        // First distance
+        if (restDistance >= 10.0f)
         {
-            totalPrice += 10.0f * 1.80f;
-            restDistance -= 10;
-            printf("First 10 km: 10.0km * RM 1.80 = RM %.2f\n", 10.0f * 1.80f);
+            currentDistancePrice = 10.0f * 1.80f;
+            totalPrice += currentDistancePrice;
+            restDistance -= 10.0f;
+            printf("First 10 km: 10.0km * RM 1.80 = RM %.2f\n", currentDistancePrice);
         }
-        else if (restDistance > 0 && restDistance < 10) 
+        else if (restDistance > 0 && restDistance < 10.0f)
         {
-            totalPrice += restDistance * 1.80f;
-            printf("First 10 km: %.1fkm * RM 1.80 = RM %.2f\n", restDistance, restDistance * 1.80f);
+            currentDistancePrice = restDistance * 1.80f;
+            totalPrice += currentDistancePrice;
+            printf("First 10 km: %0.1fkm * RM 1.80 = RM %.2f\n", restDistance, currentDistancePrice);
+            distanceFinished = true;
         }
-
-        //float secondDistance = restDistance - 50;
-        if (restDistance >= 50) 
+        
+        // Second distance
+        if (restDistance >= 50.0f)
         {
-            totalPrice += 50.0f * 1.50f;
-            restDistance -= 50;
-            printf("Next 50 km: 50.0km * RM 1.50 = %.2f\n", 50.0f * 1.50f);
+            currentDistancePrice = 50.0f * 1.50f;
+            totalPrice += currentDistancePrice;
+            restDistance -= 50.0f;
+            printf("Next 50 km: 50.0km * RM 1.50 = RM %.2f\n", currentDistancePrice);
         }
-        else if (restDistance > 10 && restDistance < 50) 
+        else if (!distanceFinished && restDistance > 10 && restDistance < 50)
         {
-            totalPrice += restDistance * 1.50f;
-            printf("*Next 50 km: %.1fkm * RM 1.50 = RM %.2f\n", restDistance, restDistance * 1.50f);
-        }
-
-        //float thirdDistance = restDistance - 50;
-        if (restDistance >= 50) 
-        {
-            totalPrice += 50.0f * 1.30f;
-            restDistance -= 50;
-            printf("Next 50 km: 50.0km * RM 1.30 = %.2f\n", 50.0f * 1.30f);
-        }
-        else if (restDistance > 0 && restDistance < 50) 
-        {
-            totalPrice += restDistance * 1.30f;
-            printf("*Next 50 km: %.1fkm * RM 1.30 = RM %.2f\n", restDistance, restDistance * 1.30f);     
+            currentDistancePrice = restDistance * 1.50f;
+            totalPrice += currentDistancePrice;
+            printf("Next 50 km: %0.1fkm * RM 1.50 = RM %.2f\n", restDistance, currentDistancePrice);
+            distanceFinished = true;
         }
 
-        //float fourthDistance = restDistance - 100;
-        if (restDistance > 110) 
+        // Third distance
+        if (restDistance >= 50.0f)
         {
-            totalPrice += restDistance * 1.00f;
-            printf("Beyond 111km: %.1fkm * RM 1.00 = RM %.2f\n", restDistance, restDistance * 1.00f);
+            currentDistancePrice = 50.0f * 1.30f;
+            totalPrice += currentDistancePrice;
+            restDistance -= 50.0f;
+            printf("Next 50 km: 50.0km * RM 1.30 = RM %.2f\n", currentDistancePrice);
         }
+        else if (!distanceFinished && restDistance > 0 && restDistance < 50)
+        {
+            currentDistancePrice = restDistance * 1.30f;
+            totalPrice += currentDistancePrice;
+            printf("Next 50 km: %0.1fkm * RM 1.30 = RM %.2f\n", restDistance, currentDistancePrice);
+            distanceFinished = true;
+        }
+
+        // Fourth distance
+        if (!distanceFinished && restDistance > 0)
+        {
+            currentDistancePrice = restDistance * 1.00f;
+            totalPrice += currentDistancePrice;
+            printf("Beyond 110 km: %0.1fkm * RM 1.00 = RM %.2f\n", restDistance, currentDistancePrice);
+        }
+
 
         if (totalPrice > 150) 
         {
@@ -138,7 +171,7 @@ private:
     void clearInput()
     {
         cin.clear();
-        cin.ignore(256,'\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     }
 
     void displayInputError(string errorMsg = "Invalid value, please try again")
@@ -146,6 +179,35 @@ private:
         cout << "\n-------------------------------------------------------" << endl;
         cout << "ERROR: " << errorMsg << endl;
         cout << "-------------------------------------------------------\n" << endl;
+    }
+
+    // Check that staff name does not contain numbers and other symbols
+    bool validateName(string name)
+    {
+        bool isValid = true;
+        int strLength = name.size();
+
+        if (strLength == 0)
+            return false;
+
+        if (strLength == 1 && (name[0] == ' ' || name[0] == '\n'))
+            return false;
+
+        for (size_t i = 0; i < strLength; i++)
+        {
+            if (name[i] == ' ')
+            {
+                continue;
+            }
+            
+            if (!isalpha(name[i]))
+            {
+                isValid = false;
+                break;
+            }
+        }
+        
+        return isValid;
     }
 };
 

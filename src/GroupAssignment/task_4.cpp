@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <limits>
 using namespace std;
 
 class Order 
@@ -44,6 +45,7 @@ private:
     string _customerName;
     string _customerIC;
     bool _isContinueOrdering;
+    bool _isFirstRun;
 
 public:
     RestaurantOrderProgram() 
@@ -57,6 +59,7 @@ public:
     void run() 
     {
         string choosedAction;
+        _isFirstRun = true;
         
         while (true) 
         {
@@ -336,12 +339,36 @@ public:
 
     void inputNameIC() 
     {
-        printf("Please enter your name: ");
-        clearInput();
-        getline(cin, _customerName); // TODO: Validate customer name
+        if (_isFirstRun)
+        {
+            clearInput();
 
-        printf("Please enter your IC / Passport number: ");
-        cin >> _customerIC; // TODO: Validate passport or IC number
+        INPUT_NAME:
+            printf("Please enter your name: ");
+            getline(cin, _customerName);
+
+            bool isValidName = validateName(_customerName);
+
+            if (!isValidName)
+            {
+                displayInputError("Customer name is invalid, please enter right name.");
+                goto INPUT_NAME;
+            }
+            
+        INPUT_PASSPORT:
+            printf("Please enter your IC / Passport number: ");
+            cin >> _customerIC; // TODO: Validate passport or IC number
+
+            bool isValidPassportNumber = validatePassportNumber(_customerIC);
+            if (!isValidPassportNumber)
+            {
+                clearInput();
+                displayInputError("Passport number is invalid, it should be more than 4 numbers or alphabets.");
+                goto INPUT_PASSPORT;
+            }
+
+            _isFirstRun = false;
+        }
     }
 
     void welcomeMessage() 
@@ -371,7 +398,7 @@ private:
     void clearInput()
     {
         cin.clear();
-        cin.ignore(256,'\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     }
 
     void displayInputError(string errorMsg = "Invalid value, please try again")
@@ -379,6 +406,59 @@ private:
         cout << "\n-------------------------------------------------------" << endl;
         cout << "ERROR: " << errorMsg << endl;
         cout << "-------------------------------------------------------\n" << endl;
+    }
+
+    // Check that customer name does not contain numbers and other symbols
+    bool validateName(string name)
+    {
+        bool isValid = true;
+        int strLength = name.size();
+
+        if (strLength == 0)
+            return false;
+
+        if (strLength == 1 && (name[0] == ' ' || name[0] == '\n'))
+            return false;
+
+        for (size_t i = 0; i < strLength; i++)
+        {
+            if (name[i] == ' ')
+            {
+                continue;
+            }
+            
+            if (!isalpha(name[i]))
+            {
+                isValid = false;
+                break;
+            }
+        }
+        
+        return isValid;
+    }
+
+    // Check that passport number's length is more than 4 alphabets or numbers
+    bool validatePassportNumber(string passportNumber)
+    {
+        bool isValid = true;
+        int strLength = passportNumber.size();
+
+        if (strLength <= 4)
+            return false;
+
+        if (passportNumber[0] == ' ' || passportNumber[0] == '\n')
+            return false;
+
+        for (size_t i = 0; i < strLength; i++)
+        {
+            if (!isalpha(passportNumber[i]) && !isdigit(passportNumber[i]))
+            {
+                isValid = false;
+                break;
+            }
+        }
+
+        return isValid;
     }
 };
 
