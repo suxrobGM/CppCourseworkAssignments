@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <typeinfo>
 using namespace std;
 
 enum Action 
@@ -17,9 +18,38 @@ enum Action
     QUIT
 };
 
+// Template function to validate user input
+template <typename T>
+T Validate(string text)
+{
+	T value;
+	while (true)
+	{
+		cout << "\n" << text;
+		cin >> value;
+
+		if (!cin.fail())
+			if (typeid(T) == typeid(int) || typeid(T) == typeid(float) || typeid(T) == typeid(double) || typeid(T) == typeid(char))
+			{
+				if (cin.peek() == '\n')
+					break;
+			}
+			else
+				break;
+
+		cout << "Error - Invalid value" << endl;
+		cin.clear();
+		cin.ignore(256, '\n');
+	}
+	return value;
+}
+
+
 class CalculatorProgram 
 {
 public:
+
+    // Driver code
     void run()
     {
         string choosedAction;
@@ -76,8 +106,11 @@ public:
             case ADD: 
             {
             INPUT_ADD:
-                cout << "Please enter 2 numbers:" << endl;
-                cin >> num1 >> num2;
+                
+                num1 = Validate<double>("Please enter 1st number: ");
+                num2 = Validate<double>("Please enter 2nd number: ");
+                //cout << "Please enter 2 numbers:" << endl;
+                //cin >> num1 >> num2;
 
                 if (cin.fail())
                 {
@@ -92,8 +125,10 @@ public:
             case SUBTRACT: 
             {
             INPUT_SUBTRACT:
-                cout << "Please enter 2 numbers:" << endl;
-                cin >> num1 >> num2;
+                num1 = Validate<double>("Please enter 1st number: ");
+                num2 = Validate<double>("Please enter 2nd number: ");
+                //cout << "Please enter 2 numbers:" << endl;
+                //cin >> num1 >> num2;
 
                 if (cin.fail())
                 {
@@ -108,8 +143,10 @@ public:
             case MULTIPLY: 
             {
             INPUT_MULTIPLY:
-                cout << "Please enter 2 numbers:" << endl;
-                cin >> num1 >> num2;
+                num1 = Validate<double>("Please enter 1st number: ");
+                num2 = Validate<double>("Please enter 2nd number: ");
+                //cout << "Please enter 2 numbers:" << endl;
+                //cin >> num1 >> num2;
 
                 if (cin.fail())
                 {
@@ -124,8 +161,10 @@ public:
             case DIVIDE: 
             {
             INPUT_DIVIDE:
-                cout << "Please enter 2 numbers:" << endl;
-                cin >> num1 >> num2;
+                num1 = Validate<double>("Please enter 1st numbers: ");
+                num2 = Validate<double>("Please enter 2nd number: ");
+                //cout << "Please enter 2 numbers:" << endl;
+                //cin >> num1 >> num2;
 
                 if (cin.fail())
                 {
@@ -185,6 +224,7 @@ public:
         cout << "-------------------------------------------------------\n" << endl;
     }
 
+    // Displays user choices
     void showChoice() 
     {
         cout << "\n-------------------------------------------------------" << endl;
@@ -198,6 +238,7 @@ public:
         cout << "-------------------------------------------------------\n" << endl;
     }
 
+    // Function to exit from program
     void quitProgram() 
     {
         cout << "\n-------------------------------------------------------" << endl;

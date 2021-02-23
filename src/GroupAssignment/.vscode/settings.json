@@ -5,6 +5,11 @@
         "vector": "cpp",
         "system_error": "cpp",
         "xlocale": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xutility": "cpp"
     }
 }

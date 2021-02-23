@@ -10,6 +10,7 @@
 #include <limits>
 using namespace std;
 
+// Class order which repsresents ordered books
 class Order 
 {
 public:
@@ -56,6 +57,7 @@ public:
         _customerIC = "";
     }
 
+    // Driver code
     void run() 
     {
         string choosedAction;
@@ -295,6 +297,8 @@ public:
         }
     }
 
+
+    // Displays final receipt
     void showReceipt() 
     {
         if (_orders->size() == 0)
@@ -378,6 +382,7 @@ public:
         cout << "-----------------------------------------------------------------------\n" << endl;
     }
 
+    // Exit from program
     void quitProgram() 
     {
         cout << "\n-------------------------------------------------------" << endl;

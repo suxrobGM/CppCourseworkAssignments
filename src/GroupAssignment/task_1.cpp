@@ -10,6 +10,8 @@ using namespace std;
 class CalculateTotalAverageProgram
 {
 public:
+
+    // Driver function
     void run()
     {
         string choosedAction;
@@ -73,6 +75,7 @@ public:
         cout << "-------------------------------------------------------" << endl;
     }
 
+    // Function to exit from program
     void quitProgram() {
         cout << "\n-------------------------------------------------------" << endl;
         cout << "Quitted program!" << endl;

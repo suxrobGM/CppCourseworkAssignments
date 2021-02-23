@@ -12,7 +12,7 @@ using namespace std;
 class PetrolAllowanceProgram 
 {
 private:
-    bool _isFirstRun;
+    bool _isFirstRun; // Determines program already runned or not
     string _staffName;
 
 public:
@@ -159,6 +159,7 @@ public:
         cout << "\n-------------------------------------------------------\n" << endl;
     }
 
+    // Function to exit from program
     void quitProgram() 
     {
         cout << "\n-------------------------------------------------------" << endl;
