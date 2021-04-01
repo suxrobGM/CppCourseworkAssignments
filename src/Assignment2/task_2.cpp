@@ -601,7 +601,6 @@ private:
         cin >> user.password;
 
         user.save_to_file(credentials_file);
-        login();
     }
 
     void display_movies_in_category(string category_name, int movies_count, vector<Movie> movies)
