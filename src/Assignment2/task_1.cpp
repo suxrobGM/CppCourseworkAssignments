@@ -1,6 +1,8 @@
 /**
- * Task1
+ * Task 1
+ * Written by Sukhrob Ilyosbekov
  * Source code available in https://github.com/suxrobGM/CppCourseworkAssignments
+ * 
  **/
 #include <iostream>
 #include <sstream>

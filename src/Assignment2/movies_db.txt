@@ -1,0 +1,9 @@
+1/Venom/Tom Hardy, Michelle Williams, Riz Ahmed/Ruben Fleischer/Action/140/
+2/Black Panther/Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o/Ryan Coogler/Action/134/
+3/Godzilla (2014)/Max Borenstein, Frank Darabont/Gareth Edwards/Action/124/
+4/Mortal Kombat Legends: Scorpion's Revenge (2020)/Jeremy Adams/Ethan Spaulding/Adventure/70/
+5/Bloodshot (2020)/Jeff Wadlow/Dave Wilson/Adventure/110/
+6/The Umbrella Academy (2019)/Tom Hopper/Steve Blackman/Adventure/55/
+7/Snowpiercer (2020)/Jennifer Connelly/Josh Friedman/Comedy/50/
+8/The Boys (2019)/Karl Urban, Jack Quaid/Eric Kripke/Comedy/60/
+9/A Werewolf Boy (2012)/Song Joong-ki, Park Bo-young/Jo Sung-hee/Comedy/122/
