@@ -548,11 +548,11 @@ private:
     void welcome_message()
     {
         cout << "******************************************************************************" << endl;
-        cout << "*			KERKALA TUPOY Magazin Videos & Records Ltd 				          *" << endl;
-        cout << "*			108 kerkala, xuynya, Tallin,		                              *" << endl;
-        cout << "*			Krasnodar, 101100 Tallin, Estonia.			                      *" << endl;
-        cout << "*			Contact: +231-4296-0377						                      *" << endl;
-        cout << "*			Website: https://suxrobgm.net					                  *" << endl;
+        cout << "*			KERKALA TUPOY Magazin Videos & Records Ltd                        *" << endl;
+        cout << "*			108 kerkala, xuynya, Tallin,                                      *" << endl;
+        cout << "*			Krasnodar, 101100 Tallin, Estonia.                                *" << endl;
+        cout << "*			Contact: +231-4296-0377                                           *" << endl;
+        cout << "*			Website: https://suxrobgm.net                                     *" << endl;
         cout << "******************************************************************************" << endl;
     }
 
