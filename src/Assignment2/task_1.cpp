@@ -95,7 +95,7 @@ public:
         while (continue_action == 'Y' || continue_action == 'y')
         {
             int seconds = 0;
-            cout << "The time is: " << time.to_string() << endl;
+            cout << "\nThe time is: " << time.to_string() << endl;
             
         INPUT_NUMBER:
             cout << "Enter time increment in seconds: ";
