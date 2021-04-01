@@ -8,8 +8,9 @@
 #include <cstdlib>
 using namespace std;
 
-// Get bigger value of two numbers uisng > operator
-// Datatype T can be any primitive numeric types: short, int, long, float, double, long double, also can be char or bool 
+// Get bigger value of two numbers using > operator
+// Datatype T can be any primitive numeric types: short, int, long, float, double, long double, also can be char or bool
+// Any other types will not work properly
 template<typename T>
 T maximum(T value1, T value2)
 {
