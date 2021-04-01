@@ -331,11 +331,11 @@ public:
     {
         vector<Movie> movies = get_movies();
         ofstream out_file(_db_file.c_str(), ios::trunc);
-        bool writtenInAvailableSlot = false;
+        bool written_in_available_slot = false;
 
         for (size_t i = 0; i < movies.size(); i++)
         {
-            if (!writtenInAvailableSlot && 
+            if (!written_in_available_slot && 
                 movies[i].category == movie.category && 
                 movies[i].title == _empty_data)
             {
@@ -344,7 +344,7 @@ public:
                 movies[i].director = movie.director;
                 movies[i].category = movie.category;
                 movies[i].duration = movie.duration;
-                writtenInAvailableSlot = true;
+                written_in_available_slot = true;
             }
 
             out_file << movies[i].id << _delimiter << movies[i].title << _delimiter << movies[i].starcast << _delimiter 
@@ -353,7 +353,7 @@ public:
 
         out_file.close();
 
-        return writtenInAvailableSlot;
+        return written_in_available_slot;
     }
 
     // Add new movie to file (append to end of file)
@@ -548,11 +548,11 @@ private:
     void welcome_message()
     {
         cout << "******************************************************************************" << endl;
-        cout << "*			KERKALA TUPOY Magazin Videos & Records Ltd                        *" << endl;
-        cout << "*			108 kerkala, xuynya, Tallin,                                      *" << endl;
-        cout << "*			Krasnodar, 101100 Tallin, Estonia.                                *" << endl;
-        cout << "*			Contact: +231-4296-0377                                           *" << endl;
-        cout << "*			Website: https://suxrobgm.net                                     *" << endl;
+        cout << "*          KERKALA TUPOY Magazin Videos & Records Ltd                        *" << endl;
+        cout << "*          108 kerkala, xuynya, Tallin,                                      *" << endl;
+        cout << "*          Krasnodar, 101100 Tallin, Estonia.                                *" << endl;
+        cout << "*          Contact: +231-4296-0377                                           *" << endl;
+        cout << "*          Website: https://suxrobgm.net                                     *" << endl;
         cout << "******************************************************************************" << endl;
     }
 

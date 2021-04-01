@@ -91,12 +91,11 @@ public:
     void run()
     {
         char continue_action = 'Y';
+        Time time;
         while (continue_action == 'Y' || continue_action == 'y')
         {
             int seconds = 0;
-            Time t;
-            
-            cout << "The time is: " << t.to_string() << endl;
+            cout << "The time is: " << time.to_string() << endl;
             
         INPUT_NUMBER:
             cout << "Enter time increment in seconds: ";
@@ -116,10 +115,10 @@ public:
                 goto INPUT_NUMBER;
             }
 
-            t.add_seconds(seconds);
-            cout << "The new time is: " << t.to_string() << endl;
+            time.add_seconds(seconds);
+            cout << "The new time is: " << time.to_string() << endl;
 
-            cout << "Do you wish to repeat again (Y/N): ";
+            cout << "\nDo you wish to repeat again (Y/N): ";
             cin >> continue_action;
         }
     }
